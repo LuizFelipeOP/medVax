@@ -1,0 +1,19 @@
+{% extends "blog/base.html" %}
+{% block content %}
+{% if user.is_superuser %}
+
+        <div class="content-section">
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Apagar este estoque?</legend>
+                    <h2>Quer mesmo deletar o lote ? "{{ object.lote }}" -  "{{ object.vacina }}"</h2>
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-danger" type="submit">Deletar</button>
+                    <a class="btn btn-outline-secondary" href="{% url 'card-detail' object.id %}" >Voltar</a>
+                </div>
+            </form>
+        </div>
+{% endif %}
+{% endblock content %}

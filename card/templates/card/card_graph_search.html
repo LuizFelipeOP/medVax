@@ -1,0 +1,50 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+        <div class="content-section">
+                <!-- action="{% url 'card-create' %}" -->
+            <form  class="submission_form" method="GET"  data-url= '{{ request.build_absolute_uri|safe }}'>
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Aplicação de vacina</legend>
+                    
+                    <div id="div_id_usuario" class="form-group"> 
+                        <label for="id_usuario" class="col-form-label"> Vacina</label> 
+                        <input type="search" name="nome" value="{{request.GET.nome}}"  class="textinput textInput form-control"  required> 
+                    </div>
+
+                    <div id="div_id_usuario" class="form-group"> 
+                        <label for="id_usuario" class="col-form-label"> Ano de referencia</label> 
+                        <input type="number" maxlength="4" name="ano" value="{{request.GET.ano}}"   class="textinput textInput form-control" required > 
+                    </div>
+
+                
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Buscar usuario</button>
+                </div>
+            </form>
+
+            {% if error  %}
+                <h3>{{ error }}</h3>
+            {% endif %}
+
+
+            
+                {% if items  %}
+                <form  class="submission_form" method="GET" action="{% url 'card-graph' %}" data-url= '{{ request.build_absolute_uri|safe }}'>
+
+                    <h2>Vacina e periodo encontrados!</h2>
+                    <div id="div_id_usuario" class="form-group"> 
+                        <input type="hidden" name="queryResult" value="{{ items }}-{{vax}}"   maxlength="14" class="textinput textInput form-control" required="" > 
+                    </div>
+                    
+
+                    <button class="btn btn-outline-info" value="{{ item.user_id }}"  type="submit">Continue</button>
+
+                </form>
+
+                {% endif %}
+
+        </div>
+
+{% endblock %}

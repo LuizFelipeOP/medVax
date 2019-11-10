@@ -1,0 +1,23 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% if user.is_superuser %}
+
+        <div class="content-section">
+            <form  class="submission_form" method="POST" data-url= '{{ request.build_absolute_uri|safe }}'>
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Confirma a aplicação da vacina?</legend>
+
+                    {{ form|crispy }}
+
+                </fieldset>
+                <div class="form-group">
+                    <input type=button class="btn btn-outline-info" value="Não" onClick="javascript:history.go(-1);">
+                    <button class="btn btn-outline-info" type="submit">Sim</button>
+
+                </div>
+            </form>
+        </div>
+{% endif %}
+{% endblock %}

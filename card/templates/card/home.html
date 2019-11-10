@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    {% for card in cards %}
+    <article class="media content-section">
+        <!-- <img class="rounded-circle article-img" src="{{ vax.author.profile.image.url }}"> -->
+        <div class="media-body">
+            <h2><a class="article-title" href="{% url 'card-detail' card.id %}"> Lote {{ card.lote }}</a></h2>
+            <p class="article-content">{{ card.vacina }}</p>
+            <div class="article-metadata">
+                <small class="text-muted">{{ card.date_posted|date:"d/m/Y" }}</small>
+            </div>  
+        </div>
+    </article>
+    {% endfor %}
+{% endblock content %}

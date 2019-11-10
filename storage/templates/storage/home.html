@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    {% for storage in storages %}
+    <article class="media content-section">
+        <!-- <img class="rounded-circle article-img" src="{{ vax.author.profile.image.url }}"> -->
+        <div class="media-body">
+            <h2><a class="article-title" href="{% url 'storage-detail' storage.id %}">Lote {{ storage.lote }}</a></h2>
+            <p class="article-content">{{ storage.quantidade }}</p>
+            <div class="article-metadata">
+                <small class="text-muted">{{ storage.descricao }}</small>
+                {% if storage.ativo == "A" %}
+                <small class="text-muted"> - Ativo</small>
+                {% else %}
+                <small class="text-muted"> - Inativo</small>
+                {% endif %}
+            </div>  
+        </div>
+    </article>
+    {% endfor %}
+{% endblock content %}

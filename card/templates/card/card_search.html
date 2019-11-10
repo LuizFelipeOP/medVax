@@ -1,0 +1,69 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+        <div class="content-section">
+                <!-- action="{% url 'card-create' %}" -->
+            <form  class="submission_form" method="GET"  data-url= '{{ request.build_absolute_uri|safe }}'>
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Aplicação de vacina</legend>
+                    
+                    <div id="div_id_usuario" class="form-group"> 
+                        <label for="id_usuario" class="col-form-label"> Digite o cpf do paciente</label> 
+                        <input type="search" name="cpf" value="{{request.GET.cpf}}"  maxlength="14" class="textinput textInput form-control"  > 
+                    </div>
+
+                    <div id="div_id_usuario" class="form-group"> 
+                        <label for="id_usuario" class="col-form-label"> Digite o CNS do paciente</label> 
+                        <input type="search" name="cns" value="{{request.GET.cns}}"  maxlength="14" class="textinput textInput form-control"  > 
+                    </div>
+                    <hr>
+                    <div id="div_id_usuario" class="form-group"> 
+                        <label for="id_usuario" class="col-form-label"> Digite a vacina a ser aplicada</label> 
+                        <input type="search" name="vacina" value="{{request.GET.vacina}}"  maxlength="30" class="textinput textInput form-control" required="" > 
+                    </div>
+
+                    
+
+
+                    <!-- {{ form|crispy }} -->
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Buscar usuario</button>
+                </div>
+            </form>
+
+            {% if error  %}
+                <h3>{{ error }}</h3>
+            {% endif %}
+            
+
+
+            
+            {% for item in items %}
+                {% if item  %}
+                <form  class="submission_form" method="GET" action="{% url 'card-create' %}" data-url= '{{ request.build_absolute_uri|safe }}'>
+
+                    <h2>Usuario encontrado!</h2>
+                    
+                    <div id="div_id_usuario" class="form-group"> 
+                        <label for="id_usuario" class="col-form-label  requiredField">Escolha o lote da vacina</label> 
+                        <select name="q" required>
+                                <option value="" selected >-------------</option> 
+                            {% for lote in lotes %}
+                                {% if lote.vax_id == vax and lote.ativo == 'A' %}
+                                    <option value="{{ item.user_id }}-{{vax}}-{{lote.id}}">{{lote}}</option> 
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <button class="btn btn-outline-info" type="submit">Continue</button>
+
+                </form>
+
+                {% endif %}
+            {% endfor %}
+            
+        </div>
+
+{% endblock %}

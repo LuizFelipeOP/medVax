@@ -1,0 +1,15 @@
+migrations: python manage.py shell
+
+
+-Importação das models
+    from blog.models import Post
+    from django.contrib.auth.models import User
+
+    Post.objects.all() -- ja importado os dados é possivel lista-los
+
+    user = User.objects.filter(username='Lufe').first() //insere o usuario Lufe a partir
+                                                          de uma variavel
+
+    post_1 = Post(title='Blog 2', content='Second Post', author_id=user.id) 
+    
+    user.post_set.create(title='Blog 3', content='Third Post')
