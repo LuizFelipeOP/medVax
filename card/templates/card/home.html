@@ -4,7 +4,7 @@
     <article class="media content-section">
         <!-- <img class="rounded-circle article-img" src="{{ vax.author.profile.image.url }}"> -->
         <div class="media-body">
-            <h2><a class="article-title" href="{% url 'card-detail' card.id %}"> Lote {{ card.lote }}</a></h2>
+            <h2><a class="article-title" href="{% url 'card-detail' card.id %}"> Número do lote {{ card.lote }}</a></h2>
             <p class="article-content">{{ card.vacina }}</p>
             <div class="article-metadata">
                 <small class="text-muted">{{ card.date_posted|date:"d/m/Y" }}</small>

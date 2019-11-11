@@ -37,19 +37,8 @@ def search(request):
 
     
     if(cpfQuery):
-        results = Profile.objects.filter(Q(cpf__icontains=cpfQuery)).values('user_id')
-        if(results):
-            usuario = User.objects.get(id__icontains=results)
-            content = {
-                'items': results,
-                'usuario': usuario.username
-            }
-            return render(request, 'card/card_search.html', content)
-        else:
-            content = {
-                'error': 'Usuario não encontrado'
-            }
-            return render(request, 'card/card_search.html', content)
+        content = sentDataView(cpfQuery,vacinaQuery, request)
+        return render(request, 'card/card_search.html', content)
 
     if(cnsQuery):
         content = sentDataView(cnsQuery,vacinaQuery, request)
@@ -58,16 +47,17 @@ def search(request):
         return render(request, 'card/card_search.html')
 
 
-def sentDataView(cnsQuery,vacinaQuery, request):
-    results = Profile.objects.filter(Q(cns__icontains=cnsQuery)).values('user_id')
+def sentDataView(dataQuery,vacinaQuery, request):
+    if(len(dataQuery) == 11):
+        results = Profile.objects.filter(Q(cpf__icontains=dataQuery)).values('user_id')
+    if(len(dataQuery) > 11):
+        results = Profile.objects.filter(Q(cns__icontains=dataQuery)).values('user_id')
+
     vaxResult = Vax.objects.filter(Q(nome=vacinaQuery)).values('id')
 
     if(results and vaxResult):
         usuario = User.objects.get(id__icontains=results)
         vax_id = Vax.objects.get(id__icontains=vaxResult)
-        # lotes = Storage.objects.filter(vax_id=vaxResult, ativo = 'A')
-        # lotes = Storage.objects.filter(vax_id=vaxResult, ativo = 'A')
-        # lotes_list = list(lotes)
         lotes = Storage.objects.all()
         content = {
             'items': results,
@@ -216,16 +206,11 @@ class CardCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        response = super(CardCreateView, self).form_valid(form)
-        if self.request.is_ajax():
-            data = {
-                'message': "Salvou esse caralho"
-            }
-            form.instance.author = self.request.user
-            return JsonResponse(data)
-        else:
-            return response
-        #return super().form_valid(form)
+        valuesGet = self.request.GET.get('q').split('-')
+        qtd_lote = Storage.objects.get(id__icontains=valuesGet[2])
+        qtd_lote.quantidade = qtd_lote.quantidade - 1
+        qtd_lote.save()
+        return super().form_valid(form)
         
 
 
