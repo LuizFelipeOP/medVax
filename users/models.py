@@ -10,8 +10,8 @@ class Profile(models.Model):
     cpf = models.CharField(max_length=11, unique=True, blank=True)
     nome_mae = models.CharField(max_length=60, blank=True)
     nome_pai = models.CharField(max_length=60, blank=True)
-    cns = models.CharField(max_length=15, unique=True, blank=True, )
-    data_nascimento  = models.DateTimeField(default=timezone.now)
+    cns = models.CharField(max_length=15, unique=True, blank=True)
+    data_nascimento  = models.DateField(default=timezone.now)
     # image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
     def __str__(self):

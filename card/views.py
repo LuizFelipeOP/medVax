@@ -121,8 +121,9 @@ def graph(request):
             
             if(value.date_posted.year == int(vaxQuery[0])):
                 usuario = Profile.objects.get(user_id=value.usuario_id)
-                
-                newDate =  relativedelta(value.date_posted, usuario.data_nascimento).years 
+                # print(type(value.date_posted))
+                # print(type(usuario.data_nascimento))
+                newDate =  relativedelta(value.date_posted.date(), usuario.data_nascimento).years 
                 yearsList.append(newDate)
 
         yearsListDone = yearsCountChart(yearsList)
