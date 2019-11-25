@@ -1,8 +1,106 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    {% for card in cards %}
-    <article class="media content-section">
-        <!-- <img class="rounded-circle article-img" src="{{ vax.author.profile.image.url }}"> -->
+ <div class="card-section">
+
+        <div class="card-col">
+                <p class="article-content"> Contra-pólio</p>
+                {% for new in contraPolio %}
+                <div class="celula-card">
+                    <small class="text-muted">{{ new.date_posted|date:"d/m/Y" }}</small>
+                    <p class="article-content"> Lote {{ new.lote }}</p>
+                    <p class="article-content">{{ new.vacina }}</p>
+                    <p class="mr-2" href="#">{{ new.author }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="card-col">
+            <p class="article-content">Tríplice</p>
+            {% for new in triplice %}
+                <div class="celula-card">
+                    <small class="text-muted">{{ new.date_posted|date:"d/m/Y" }}</small>
+                    <p class="article-content"> Lote {{ new.lote }}</p>
+                    <p class="article-content">{{ new.vacina }}</p>
+                    <p class="mr-2" href="#">{{ new.author }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+
+        <div class="card-col">
+            <p class="article-content">Sarampo</p>
+            {% for new in sarampo %}
+                <div class="celula-card">
+                    <small class="text-muted">{{ new.date_posted|date:"d/m/Y" }}</small>
+                    <p class="article-content"> Lote {{ new.lote }}</p>
+                    <p class="article-content">{{ new.vacina }}</p>
+                    <p class="mr-2" href="#">{{ new.author }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="card-col">
+            <p class="article-content">BCG</p>
+            {% for new in BCG %}
+                <div class="celula-card">
+                    <small class="text-muted">{{ new.date_posted|date:"d/m/Y" }}</small>
+                    <p class="article-content"> Lote {{ new.lote }}</p>
+                    <p class="article-content">{{ new.vacina }}</p>
+                    <p class="mr-2" href="#">{{ new.author }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="card-col">
+            <p class="article-content">Dupla</p>
+            {% for new in dupla %}
+                <div class="celula-card">
+                    <small class="text-muted">{{ new.date_posted|date:"d/m/Y" }}</small>
+                    <p class="article-content"> Lote {{ new.lote }}</p>
+                    <p class="article-content">{{ new.vacina }}</p>
+                    <p class="mr-2" href="#">{{ new.author }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="card-col">
+            <p class="article-content">Outras</p>
+            {% for new in outras %}
+                <div class="celula-card">
+                    <small class="text-muted">{{ new.date_posted|date:"d/m/Y" }}</small>
+                    <p class="article-content"> Lote {{ new.lote }}</p>
+                    <p class="article-content">{{ new.vacina }}</p>
+                    <p class="mr-2" href="#">{{ new.author }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- <table class="card-table"> 
+        <tr> 
+            <th>Contra-pólio</th> 
+            <th>Triplice</th> 
+            <th>Sarampo</th> 
+            <th>BCG</th> 
+            <th>Outras</th> 
+        </tr> 
+        
+        <tr> 
+            {% for new in newContent%}
+                <td>{{new.vacina}}</td>
+            {% endfor %}
+
+            <td>1ª Dose</td> 
+            <td>2ª Dose</td> 
+            <td>1ª Reforço</td> 
+            <td>2ª Reforço</td> 
+        </tr> 
+
+    </table> -->
+
+
+    <!-- {% for card in cards %}
+    <article class="media card-section">
         <div class="media-body">
             <h2><a class="article-title" href="{% url 'card-detail' card.id %}"> Número do lote {{ card.lote }}</a></h2>
             <p class="article-content">{{ card.vacina }}</p>
@@ -11,5 +109,31 @@
             </div>  
         </div>
     </article>
-    {% endfor %}
+    {% endfor %} -->
 {% endblock content %}
+
+{% block javascript %} 
+<script>
+    $(document).ready(function(){
+        var  contraPolio = "{{newContent|safe}}";
+        console.log(typeof(contraPolio))
+
+
+        if(get){
+            var idValue = get.split("-");
+            
+            setValuesSelect('#id_usuario', 'id_usuario', idValue[0]);
+            setValuesSelect('#id_vacina', 'id_vacina',  idValue[1]);
+            setValuesSelect('#id_lote', 'id_lote', idValue[2]);
+        
+            function setValuesSelect(id, idFind, value){
+                $(id).val(value)
+                $(id).find('option').not(':selected').remove();
+                $(id).disabled = true;
+                //document.getElementById(idFind).disabled = true;   
+                return
+            }
+        }
+    })
+</script>
+{% endblock javascript %} 

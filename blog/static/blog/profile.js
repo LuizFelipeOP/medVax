@@ -1,27 +1,39 @@
 var $myForm = $('.validation')
 
+formatData();
+
 $myForm.submit(function(event){
+       
    event.preventDefault();
    var x = TestaCPF(event.currentTarget.cpf.value);
    if(!x) {
           alert("Informe um CPF valido");
    }else{
-          alert("Dados salvos");
-    var $formData = $(this).serialize()
-    var $thisURL = $myForm.attr('data-url') || window.location.href // or set your own url
-    $.ajax({
-        method: "POST",
-        url: $thisURL,
-        data: $formData,
-        // success: function(data) { 
-        //        },
-        // error: function(ts) { 
-        //         alert(ts.responseText) 
-        //         }
-    })
-   }
+       var dataNascimentoCast = event.currentTarget.data_nascimento.value;
+       var newData = dataNascimentoCast.replace(/\\/g, '-');
+       event.currentTarget.data_nascimento.value = newData;
+       alert("Dados salvos");
+       var $formData = $(this).serialize()
+       var $thisURL = $myForm.attr('data-url') || window.location.href // or set your own url
+              $.ajax({
+                     method: "POST",
+                     url: $thisURL,
+                     data: $formData,
+                     // success: function(data) { 
+                     //        },
+                     // error: function(ts) { 
+                     //         alert(ts.responseText) 
+                     //         }
+              })
+       formatData()
+       }
 })
-
+ function formatData(){
+              
+       var dataNascimentoCast = document.getElementById('id_data_nascimento').value;
+       var newData = dataNascimentoCast.replace(/-/g, String.fromCharCode(92));
+       document.getElementById('id_data_nascimento').value = newData;
+ }
 
 function TestaCPF(strCPF) {
    var Soma;

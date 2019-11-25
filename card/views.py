@@ -20,11 +20,56 @@ import datetime
 
 def show(request):
     results = Card.objects.filter(Q(usuario_id=request.user.id))
+    
+    contrapolioArray = []
+    tripliceArray = []
+    sarampoArray = []
+    BCGArray = []
+    duplaArray = []
+    outrasArray = []
+
+    for res in results:
+        switcher={
+                'Contra-pólio':'Sunday',
+                1:'Monday',
+                2:'Tuesday',
+                3:'Wednesday',
+                4:'Thursday',
+                5:'Friday',
+                6:'Saturday'
+             }
+        if(str(res.vacina) == "Contra-pólio"):
+            contrapolioArray.append(res)
+        elif(str(res.vacina) == "Triplice"):
+            tripliceArray.append(res)
+        elif(str(res.vacina) == "Sarampo"):
+            sarampoArray.append(res)
+        elif(str(res.vacina) == "BCG"):
+            BCGArray.append(res)
+        elif(str(res.vacina) == "Dupla"):
+            duplaArray.append(res)
+        else:
+            outrasArray.append(res)
 
     content = {
-        'cards': results #pega os dados inseridos no banco
+        'cards': results,
+        'contraPolio': contrapolioArray, 
+        'triplice': tripliceArray,
+        'sarampo': sarampoArray,
+        'BCG': BCGArray,
+        'dupla': duplaArray,
+        'outras': outrasArray
     }
-    return render(request, 'card/home.html', content)
+    return render(request, 'card/home.html',  {
+                                                'contraPolio': contrapolioArray, 
+                                                'triplice': tripliceArray,
+                                                'sarampo': sarampoArray,
+                                                'BCG': BCGArray,
+                                                'dupla': duplaArray,
+                                                'outras': outrasArray
+                                              })
+ 
+
 
 @staff_member_required
 def search(request):
@@ -86,7 +131,6 @@ def graphSearch(request):
             return render(request, 'card/card_graph_search.html', content)
 
         vaxResult = Vax.objects.filter(Q(nome=vacinaGQuery)).values('id')
-        print(vaxResult)
         if(not vaxResult):
             content = {
                     'error': 'Vacina não encontrada'
@@ -121,8 +165,9 @@ def graph(request):
             
             if(value.date_posted.year == int(vaxQuery[0])):
                 usuario = Profile.objects.get(user_id=value.usuario_id)
-                
-                newDate =  relativedelta(value.date_posted, usuario.data_nascimento).years 
+                # print(type(value.date_posted))
+                # print(type(usuario.data_nascimento))
+                newDate =  relativedelta(value.date_posted.date(), usuario.data_nascimento).years 
                 yearsList.append(newDate)
 
         yearsListDone = yearsCountChart(yearsList)

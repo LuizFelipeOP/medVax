@@ -13,6 +13,7 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Contra criada para {username}! Já é possível logar!')
+            messages.warning(request, f'Lembre-se de atualizar suas informações da sua conta no seu perfil!')
             return redirect('login')
     else:
         form = UserRegisterForm()

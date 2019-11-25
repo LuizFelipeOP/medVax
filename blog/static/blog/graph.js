@@ -1,33 +1,33 @@
-
-var itemsCleanFirstChar = items.replace("[","");
-var itemsCleanLastChar = itemsCleanFirstChar.replace("]","");
-var newItensArray = itemsCleanLastChar.split(",");
-
-console.log(newItensArray);
-var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-var color = Chart.helpers.color;
-var barChartData = {
-    labels: ['0-9A', '9-19A', '20-39A', '40-49A', '50-59A', '60-64A', '65-69A', '70-74A', '75-79A', '80A +'],
-    datasets: [{
-        label: 'Dataset 1',
-        backgroundColor: color(window.chartColors).alpha(0.5).rgbString(),
-        borderColor: window.chartColors,
-        borderWidth: 1,
-        data: [
-            newItensArray[0],
-            newItensArray[1],
-            newItensArray[2],
-            newItensArray[3],
-            newItensArray[4],
-            newItensArray[5],
-            newItensArray[6],
-            newItensArray[7],
-            newItensArray[8],
-            newItensArray[9],
-        ]
-    }]
-
-};
+if(items){
+    var itemsCleanFirstChar = items.replace("[","");
+    var itemsCleanLastChar = itemsCleanFirstChar.replace("]","");
+    var newItensArray = itemsCleanLastChar.split(",");
+    
+    console.log(newItensArray);
+    var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var color = Chart.helpers.color;
+    var barChartData = {
+        labels: ['0-9A', '9-19A', '20-39A', '40-49A', '50-59A', '60-64A', '65-69A', '70-74A', '75-79A', '80A +'],
+        datasets: [{
+            label: 'Dataset 1',
+            backgroundColor: color(window.chartColors).alpha(0.5).rgbString(),
+            borderColor: window.chartColors,
+            borderWidth: 1,
+            data: [
+                newItensArray[0],
+                newItensArray[1],
+                newItensArray[2],
+                newItensArray[3],
+                newItensArray[4],
+                newItensArray[5],
+                newItensArray[6],
+                newItensArray[7],
+                newItensArray[8],
+                newItensArray[9],
+            ]
+        }]
+    };
+}
 
 window.onload = function() {
     var ctx = document.getElementById('canvas').getContext('2d');
