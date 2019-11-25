@@ -7,10 +7,10 @@ from .models import User as UserModel
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    cpf = models.CharField(max_length=11, unique=True, blank=True)
-    nome_mae = models.CharField(max_length=60, blank=True)
-    nome_pai = models.CharField(max_length=60, blank=True)
-    cns = models.CharField(max_length=15, unique=True, blank=True, )
+    cpf = models.CharField(max_length=11,  null=True )
+    nome_mae = models.CharField(max_length=60,  null=True )
+    nome_pai = models.CharField(max_length=60,  null=True )
+    cns = models.CharField(max_length=15,  null=True )
     data_nascimento  = models.DateTimeField(default=timezone.now)
     # image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
