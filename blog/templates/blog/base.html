@@ -105,7 +105,6 @@
         
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        {% block javascript %}{% endblock %}
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -113,6 +112,7 @@
         <script src="{% static 'blog/form.js' %}"></script>
         <script src="{% static 'blog/graph.js' %}"></script>
         <script src="{% static 'blog/profile.js' %}"></script>
+        {% block javascript %}{% endblock %}
 
         <!-- <link rel="stylesheet" type="text/css" href="{% static 'blog/form.js' %}"> -->
 
