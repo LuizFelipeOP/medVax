@@ -11,8 +11,13 @@
 }
 .card-section > .card-col >  .celula-card{
   background: #efeeee;
-  border-style: solid;
-  border-width: 1px 1px 1px 1px;
   margin: 5px;
   padding: 10px;
+  font-size: 11px;
+}
+.card-section > .card-col >  .celula-card p{
+  margin-bottom: 0px;
+}
+.card-section > .card-col > .article-content{
+  text-align: center;
 }

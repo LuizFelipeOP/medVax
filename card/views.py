@@ -40,7 +40,7 @@ def show(request):
              }
         if(str(res.vacina) == "Contra-pólio"):
             contrapolioArray.append(res)
-        elif(str(res.vacina) == "Triplice"):
+        elif(str(res.vacina) == "Tríplice"):
             tripliceArray.append(res)
         elif(str(res.vacina) == "Sarampo"):
             sarampoArray.append(res)
