@@ -6,7 +6,9 @@
   margin-bottom: 20px;
   display: flex;
 }
-
+.card-section > .card-col {
+  margin: 0px 10px;
+}
 .card-section > .card-col >  .celula-card{
   background: #efeeee;
   border-style: solid;
