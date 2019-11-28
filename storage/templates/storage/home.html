@@ -6,12 +6,12 @@
         <div class="media-body">
             <h2><a class="article-title" href="{% url 'storage-detail' storage.id %}">Número do lote {{ storage.lote }}</a></h2>
             <p class="article-content">Quantidade: {{ storage.quantidade }}</p>
+            <p class="article-content">Vacina: {{ storage.vax }}</p>
             <div class="article-metadata">
-                <small class="text-muted">{{ storage.descricao }}</small>
                 {% if storage.ativo == "A" %}
-                <small class="text-muted"> - Ativo</small>
+                <small class="text-muted"> Ativo</small>
                 {% else %}
-                <small class="text-muted"> - Inativo</small>
+                <small class="text-muted"> Inativo</small>
                 {% endif %}
             </div>  
         </div>

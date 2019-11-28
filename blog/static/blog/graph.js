@@ -1,4 +1,4 @@
-if(items){
+var items = "{{items}}";
     var itemsCleanFirstChar = items.replace("[","");
     var itemsCleanLastChar = itemsCleanFirstChar.replace("]","");
     var newItensArray = itemsCleanLastChar.split(",");
@@ -27,7 +27,7 @@ if(items){
             ]
         }]
     };
-}
+
 
 window.onload = function() {
     var ctx = document.getElementById('canvas').getContext('2d');

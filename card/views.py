@@ -171,7 +171,6 @@ def graph(request):
                 yearsList.append(newDate)
 
         yearsListDone = yearsCountChart(yearsList)
-        print(yearsListDone)
         content = {
             'items': yearsListDone
         }
