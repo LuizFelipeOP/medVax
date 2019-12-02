@@ -122,3 +122,7 @@ a.article-title:hover {
 .title {
 	font-size: large;
 }
+
+.spacer{
+ padding-top: 10px;
+}

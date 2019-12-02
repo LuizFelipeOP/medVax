@@ -20,7 +20,7 @@ class VaxDetailView(DetailView):
 
 class VaxCreateView(LoginRequiredMixin, CreateView):
     model = Vax
-    fields = ['nome', 'descricao','dose','temperatura','milimeter']
+    fields = ['nome', 'descricao','dose','temperature','milimeter']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -28,7 +28,7 @@ class VaxCreateView(LoginRequiredMixin, CreateView):
 
 class VaxUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Vax
-    fields = ['nome', 'descricao','dose','temperatura','milimeter']
+    fields = ['nome', 'descricao','dose','temperature','milimeter']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
