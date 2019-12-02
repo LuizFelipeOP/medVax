@@ -8,7 +8,7 @@ class Vax(models.Model):
     nome = models.CharField(max_length=100)
     descricao = models.TextField()
     dose = models.IntegerField()
-    temperature = models.FloatField()
+    temperatura = models.FloatField()
     milimeter = models.FloatField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 

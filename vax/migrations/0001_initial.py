@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=100)),
                 ('descrytion', models.TextField()),
                 ('dose', models.IntegerField()),
-                ('temperature', models.FloatField()),
+                ('temperatura', models.FloatField()),
                 ('milimeter', models.FloatField()),
                 ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
