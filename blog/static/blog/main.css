@@ -1,84 +1,124 @@
+@import url(font-awesome.min.css);
+@import url('https://fonts.googleapis.com/css?family=Chivo&display=swap');
+
+/* Reset */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, footer, header, menu, nav, section {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: Chivo;
+	vertical-align: baseline;
+	text-decoration: none !important;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
 body {
-  background: #fafafa;
-  color: #333333;
-  margin-top: 5rem;
+	line-height: 1;	
+	background: #fafafa;
+	color: #333333;
+	margin-top: 5rem;
+}
+
+ol, ul {
+	list-style: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #444444;
+	color: #444444;
 }
 
 ul {
-  margin: 0;
+	margin: 0;
+}
+
+.fixed-top {	
+    width: -webkit-fill-available !important;
+	height: 80px !important;
+	color: #ffffff;
 }
 
 .bg-steel {
-  background-color: #5f788a;
+	background-color: #5f788a;
 }
 
 .site-header .navbar-nav .nav-link {
-  color: #cbd5db;
+	color: #cbd5db;
 }
 
 .site-header .navbar-nav .nav-link:hover {
-  color: #ffffff;
+	color: #ffffff;
 }
 
 .site-header .navbar-nav .nav-link.active {
-  font-weight: 500;
+	font-weight: 500;
 }
 
 .content-section {
-  background: #ffffff;
-  padding: 10px 20px;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
-  margin-bottom: 20px;
+	background: #ffffff;
+	padding: 10px 20px;
+	border: 1px solid #dddddd;
+	border-radius: 3px;
+	margin-bottom: 20px;
 }
 
 .article-title {
-  color: #444444;
+	color: #444444;
 }
 
 a.article-title:hover {
-  color: #428bca;
-  text-decoration: none;
+	color: #428bca;
+	text-decoration: none;
 }
 
 .article-content {
-  white-space: pre-line;
+	white-space: pre-line;
+	margin:inherit;
 }
 
 .article-img {
-  height: 65px;
-  width: 65px;
-  margin-right: 16px;
+	height: 65px;
+	width: 65px;
+	margin-right: 16px;
 }
 
 .article-metadata {
-  padding-bottom: 1px;
-  margin-bottom: 4px;
-  border-bottom: 1px solid #e3e3e3
+	padding-bottom: 1px;
+	margin-bottom: 4px;
+	border-bottom: 1px solid #e3e3e3
 }
 
 .article-metadata a:hover {
-  color: #333;
-  text-decoration: none;
+	color: #333;
+	text-decoration: none;
 }
 
 .article-svg {
-  width: 25px;
-  height: 25px;
-  vertical-align: middle;
+	width: 25px;
+	height: 25px;
+	vertical-align: middle;
 }
 
 .account-img {
-  height: 125px;
-  width: 125px;
-  margin-right: 20px;
-  margin-bottom: 16px;
+	height: 125px;
+	width: 125px;
+	margin-right: 20px;
+	margin-bottom: 16px;
 }
 
 .account-heading {
-  font-size: 2.5rem;
+	font-size: 2.5rem;
+}
+
+.col-md-9 {
+	margin: auto !important;
+	margin-top: 10px;
+}
+
+.title {
+	font-size: large;
 }

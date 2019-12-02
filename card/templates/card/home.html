@@ -1,9 +1,14 @@
 {% extends "blog/base.html" %}
 {% block content %}
- <div class="card-section">
-
+    <div class="title"> 
+        <h2>Carteira de Vacinação:</h2>
+    </div>
+        <div class="card-section">
         <div class="card-col">
+            <div class="head-table">
                 <p class="article-content"> Contra-pólio</p>
+                <hr>
+            </div>
                 {% for new in contraPolio %}
                 <div class="celula-card">
                     <small class="text-muted">{{ new.date_posted|date:"d/m/Y" }}</small>
@@ -11,12 +16,28 @@
                     <p>{{ new.vacina }}</p>
                     <p class="mr-2" href="#">{{ new.author }}</p>
                 </div>
-            {% endfor %}
+                {% endfor %}
         </div>
-
         <div class="card-col">
-            <p class="article-content">Tríplice</p>
-            {% for new in triplice %}
+            <div class="head-table">
+                <p class="article-content">Tríplice</p>
+                <hr>
+            </div>
+                {% for new in triplice %}
+                <div class="celula-card">
+                    <small class="text-muted">{{ new.date_posted|date:"d/m/Y" }}</small>
+                    <p> Lote {{ new.lote }}</p>
+                    <p>{{ new.vacina }}</p>
+                    <p class="mr-2" href="#">{{ new.author }}</p>
+                </div>
+                {% endfor %}
+        </div>
+        <div class="card-col">
+            <div class="head-table">
+                <p class="article-content">Sarampo</p>
+                <hr>
+            </div>
+                {% for new in sarampo %}
                 <div class="celula-card">
                     <small class="text-muted">{{ new.date_posted|date:"d/m/Y" }}</small>
                     <p> Lote {{ new.lote }}</p>
@@ -25,11 +46,12 @@
                 </div>
             {% endfor %}
         </div>
-
-
         <div class="card-col">
-            <p class="article-content">Sarampo</p>
-            {% for new in sarampo %}
+            <div class="head-table">
+                <p class="article-content">BCG</p>
+                <hr>
+            </div>
+                {% for new in BCG %}
                 <div class="celula-card">
                     <small class="text-muted">{{ new.date_posted|date:"d/m/Y" }}</small>
                     <p> Lote {{ new.lote }}</p>
@@ -38,10 +60,12 @@
                 </div>
             {% endfor %}
         </div>
-
         <div class="card-col">
-            <p class="article-content">BCG</p>
-            {% for new in BCG %}
+            <div class="head-table">
+                <p class="article-content">Dupla</p>
+                <hr>
+            </div>
+                {% for new in dupla %}
                 <div class="celula-card">
                     <small class="text-muted">{{ new.date_posted|date:"d/m/Y" }}</small>
                     <p> Lote {{ new.lote }}</p>
@@ -50,10 +74,12 @@
                 </div>
             {% endfor %}
         </div>
-
         <div class="card-col">
-            <p class="article-content">Dupla</p>
-            {% for new in dupla %}
+            <div class="head-table">
+                <p class="article-content">Outras</p>
+                <hr>
+            </div>
+                {% for new in outras %}
                 <div class="celula-card">
                     <small class="text-muted">{{ new.date_posted|date:"d/m/Y" }}</small>
                     <p> Lote {{ new.lote }}</p>
@@ -62,54 +88,42 @@
                 </div>
             {% endfor %}
         </div>
-
-        <div class="card-col">
-            <p class="article-content">Outras</p>
-            {% for new in outras %}
-                <div class="celula-card">
-                    <small class="text-muted">{{ new.date_posted|date:"d/m/Y" }}</small>
-                    <p> Lote {{ new.lote }}</p>
-                    <p>{{ new.vacina }}</p>
-                    <p class="mr-2" href="#">{{ new.author }}</p>
-                </div>
-            {% endfor %}
         </div>
-    </div>
 
-    <!-- <table class="card-table"> 
-        <tr> 
-            <th>Contra-pólio</th> 
-            <th>Triplice</th> 
-            <th>Sarampo</th> 
-            <th>BCG</th> 
-            <th>Outras</th> 
-        </tr> 
-        
-        <tr> 
-            {% for new in newContent%}
-                <td>{{new.vacina}}</td>
-            {% endfor %}
+        <!-- <table class="card-table"> 
+            <tr> 
+                <th>Contra-pólio</th> 
+                <th>Triplice</th> 
+                <th>Sarampo</th> 
+                <th>BCG</th> 
+                <th>Outras</th> 
+            </tr> 
+            
+            <tr> 
+                {% for new in newContent%}
+                    <td>{{new.vacina}}</td>
+                {% endfor %}
 
-            <td>1ª Dose</td> 
-            <td>2ª Dose</td> 
-            <td>1ª Reforço</td> 
-            <td>2ª Reforço</td> 
-        </tr> 
+                <td>1ª Dose</td> 
+                <td>2ª Dose</td> 
+                <td>1ª Reforço</td> 
+                <td>2ª Reforço</td> 
+            </tr> 
 
-    </table> -->
+        </table> -->
 
 
-    <!-- {% for card in cards %}
-    <article class="media card-section">
-        <div class="media-body">
-            <h2><a class="article-title" href="{% url 'card-detail' card.id %}"> Número do lote {{ card.lote }}</a></h2>
-            <p class="article-content">{{ card.vacina }}</p>
-            <div class="article-metadata">
-                <small class="text-muted">{{ card.date_posted|date:"d/m/Y" }}</small>
-            </div>  
-        </div>
-    </article>
-    {% endfor %} -->
+        <!-- {% for card in cards %}
+        <article class="media card-section">
+            <div class="media-body">
+                <h2><a class="article-title" href="{% url 'card-detail' card.id %}"> Número do lote {{ card.lote }}</a></h2>
+                <p class="article-content">{{ card.vacina }}</p>
+                <div class="article-metadata">
+                    <small class="text-muted">{{ card.date_posted|date:"d/m/Y" }}</small>
+                </div>  
+            </div>
+        </article>
+        {% endfor %} -->
 {% endblock content %}
 
 {% block javascript %} 

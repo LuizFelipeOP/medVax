@@ -4,20 +4,33 @@
   border: 1px solid #dddddd;
   border-radius: 3px;
   margin-bottom: 20px;
-  display: flex;
+  display: -webkit-inline-box;
 }
+
 .card-section > .card-col {
   margin: 0px 10px;
 }
-.card-section > .card-col >  .celula-card{
+
+.card-section > .card-col >  .celula-card {
   background: #efeeee;
   margin: 5px;
   padding: 10px;
   font-size: 11px;
 }
-.card-section > .card-col >  .celula-card p{
-  margin-bottom: 0px;
+
+.card-section > .card-col >  .celula-card p {
+  margin: inherit;
+  font-size: larger;
 }
-.card-section > .card-col > .article-content{
+
+.card-section > .card-col > .article-content {
   text-align: center;
+}
+
+.navbarToggle {
+  font-weight: bold;
+}
+
+.title {
+  margin-bottom: 10px;
 }

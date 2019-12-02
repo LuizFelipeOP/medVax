@@ -1,0 +1,98 @@
+#banner {
+	background-color: #00cdcf;
+	color: #ffffff;
+	padding: 4em 0 4em 0;
+    text-align: center;
+}
+
+#banner input, #banner select, #banner textarea {
+	color: #ffffff;
+}
+
+#banner a {
+	color: #00cdcf;
+}
+
+#banner strong, #banner b {
+	color: #ffffff;
+}
+
+#banner h1, #banner h2, #banner h3, #banner h4, #banner h5, #banner h6 {
+	color: #ffffff;
+}
+
+#banner blockquote {
+	border-left-color: rgba(255, 255, 255, 0.25);
+}
+
+#banner code {
+	background: rgba(255, 255, 255, 0.075);
+	border-color: rgba(255, 255, 255, 0.25);
+}
+
+#banner hr {
+	border-bottom-color: rgba(255, 255, 255, 0.25);
+}
+
+#banner h2 {
+	border-style: double solid;
+	border-width: 4px 1px;
+	font-size: 2.4em;
+	line-height: 1.35em;
+	margin: 0 auto 1em;
+	padding: 1.1em;
+	position: relative;
+	width: 40%;
+}
+
+#banner p {
+	color: #ffffff !important;
+	font-size: 1.5em;
+	text-transform: uppercase;
+}
+
+@media screen and (max-width: 1680px) {
+	#banner {
+		padding: 8em 0 6em 0;
+	}
+}
+
+@media screen and (max-width: 1280px) {
+	#banner {
+		padding: 6em 0 4em 0;
+	}
+	#banner h2 {
+		width: 50%;
+	}
+}
+
+@media screen and (max-width: 980px) {
+	#banner {
+		padding: 4em 2em 2em 2em;
+	}
+	#banner h2 {
+		width: 75%;
+	}
+}
+
+@media screen and (max-width: 736px) {
+	#banner {
+		padding: 3em 1.5em 1em 1.5em;
+	}
+	#banner h2 {
+		font-size: 2em;
+	}
+	#banner p {
+		font-size: 1.25em;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	#banner {
+		padding: 3em 1em 1em 1em;
+	}
+	#banner h2 {
+		font-size: 1.65em;
+		width: 100%;
+	}
+}
