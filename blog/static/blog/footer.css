@@ -1,8 +1,10 @@
 #footer {
     background-color: #6c757d;
-	padding: 4em 0 3em 0;
+    padding:2em 0 1em 0;
     text-align: center;
     color: #ffffff;
+    /* position: absolute; */
+    /* bottom: 0; */
 }
 
 .section-title{

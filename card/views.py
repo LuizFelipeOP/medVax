@@ -159,7 +159,8 @@ def graph(request):
 
     if(vaxQuery):
         values = Card.objects.filter(vacina_id=vaxQuery[1])
-
+        firstId =  Card.objects.filter(vacina_id=vaxQuery[1]).first()
+        vaxName = Vax.objects.get(id=firstId.vacina_id)
 
         for value in values:
             
@@ -172,8 +173,10 @@ def graph(request):
 
         yearsListDone = yearsCountChart(yearsList)
         print(yearsListDone)
+        print(vaxName.nome)
         content = {
-            'items': yearsListDone
+            'items': yearsListDone,
+            'vax_nome': vaxName
         }
         return render(request, 'card/card_graph.html', content)
 
@@ -252,7 +255,9 @@ class CardCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         valuesGet = self.request.GET.get('q').split('-')
-        qtd_lote = Storage.objects.get(id__icontains=valuesGet[2])
+        print(valuesGet[2])
+        qtd_lote = Storage.objects.get(id=valuesGet[2])
+        
         qtd_lote.quantidade = qtd_lote.quantidade - 1
         qtd_lote.save()
         return super().form_valid(form)

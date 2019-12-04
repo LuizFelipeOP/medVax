@@ -27,7 +27,7 @@
 {% block javascript %}
 	<script>
 		var items = "{{items}}";
-
+        
 		var itemsCleanFirstChar = items.replace("[","");
     var itemsCleanLastChar = itemsCleanFirstChar.replace("]","");
     var newItensArray = itemsCleanLastChar.split(",");
@@ -70,7 +70,7 @@ window.onload = function() {
             },
             title: {
                 display: true,
-                text: 'Chart.js Bar Chart'
+                text: "Vacinas aplicadas de {{vax_nome}}"
             }
         }
     });

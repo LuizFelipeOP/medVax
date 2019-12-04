@@ -124,5 +124,9 @@ a.article-title:hover {
 }
 
 .spacer{
- padding-top: 10px;
+ padding-top: 20px;
+}
+
+.mainSection{
+	min-height: 100vh;
 }
