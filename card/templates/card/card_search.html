@@ -17,13 +17,17 @@
                         <input type="search" name="cns" value="{{request.GET.cns}}"  maxlength="14" class="textinput textInput form-control"  > 
                     </div>
                     <hr>
-                    <div id="div_id_usuario" class="form-group"> 
+                    <!-- <div id="div_id_usuario" class="form-group"> 
                         <label for="id_usuario" class="col-form-label"> Digite a vacina a ser aplicada</label> 
                         <input type="search" name="vacina" value="{{request.GET.vacina}}"  maxlength="30" class="textinput textInput form-control" required="" > 
+                    </div> -->
+                    <div class="form-group">
+                        <select name="vacina" id="" class="select form-control">
+                            {% for nomeVax in nomes %}
+                            <option value="{{ nomeVax.nome }}">{{ nomeVax.nome }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
-
-                    
-
 
                     <!-- {{ form|crispy }} -->
                 </fieldset>

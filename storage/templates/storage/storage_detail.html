@@ -12,9 +12,10 @@
                 </div>
                 <!-- {% endif %} -->
             </div>
-            <h2 class="article-title">{{ object.lote }}</h2>
-            <p class="article-content">{{ object.vax }}</p>
-            <p class="article-content">{{ object.quantidade }}</p>
+            <h2 class="article-title">Número do lote: {{ object.lote }}</h2>
+            <p class="article-content">Vacina: {{ object.vax }}</p>
+            <p class="article-content">Quantidade: {{ object.quantidade }}</p>
+            <p class="article-content"> {{ object.descricao }}</p>
             <!-- <p><small class="text-muted">{{ object.dose }} doses</small></p>
             <!-- <p><small class="text-muted">{{ object.milimeter }} M</small></p> -->
         </div>

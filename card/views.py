@@ -89,7 +89,11 @@ def search(request):
         content = sentDataView(cnsQuery,vacinaQuery, request)
         return render(request, 'card/card_search.html', content)
     else:
-        return render(request, 'card/card_search.html')
+        results = Vax.objects.all()
+        nomeContent = {
+            'nomes': results
+        }
+        return render(request, 'card/card_search.html', nomeContent)
 
 
 def sentDataView(dataQuery,vacinaQuery, request):
@@ -100,15 +104,18 @@ def sentDataView(dataQuery,vacinaQuery, request):
 
     vaxResult = Vax.objects.filter(Q(nome=vacinaQuery)).values('id')
 
+    nameResults = Vax.objects.all()
+
     if(results and vaxResult):
-        usuario = User.objects.get(id__icontains=results)
-        vax_id = Vax.objects.get(id__icontains=vaxResult)
+        usuario = User.objects.get(pk__in=results)
+        vax_id = Vax.objects.get(pk__in=vaxResult)
         lotes = Storage.objects.all()
         content = {
             'items': results,
             'vax': vax_id.id,
             'usuario': usuario.username,
-            'lotes': lotes
+            'lotes': lotes,
+            'nomes': nameResults
         }
         return content
     else:
@@ -120,31 +127,39 @@ def sentDataView(dataQuery,vacinaQuery, request):
 @staff_member_required
 def graphSearch(request):
     global results
+    nomes = Vax.objects.all()
 
     vacinaGQuery = request.GET.get('nome')
     anoGQuery = request.GET.get('ano')
+    print(vacinaGQuery)
     if(anoGQuery and vacinaGQuery):
         if(int(anoGQuery) < 1900 or int(anoGQuery) > datetime.datetime.now().year):
             content = {
-                    'error': 'Ano invalido'
-                }
+                'error': 'Ano invalido',
+                'nomes': nomes
+            }
             return render(request, 'card/card_graph_search.html', content)
 
         vaxResult = Vax.objects.filter(Q(nome=vacinaGQuery)).values('id')
         if(not vaxResult):
             content = {
-                    'error': 'Vacina não encontrada'
+                    'error': 'Vacina não encontrada',
+                    'nomes': nomes
                 }
             return render(request, 'card/card_graph_search.html', content)
         else:
             vax_id = Vax.objects.get(id__icontains=vaxResult)
             content = {
                 'items': anoGQuery,
-                'vax': vax_id.id
+                'vax': vax_id.id,
+                'nomes': nomes
             }
             return render(request, 'card/card_graph_search.html', content)
-
-    return render(request, 'card/card_graph_search.html')
+    content = {
+        'nomes': nomes
+    }
+    print('aqui')
+    return render(request, 'card/card_graph_search.html',content)
 
 
 @staff_member_required
@@ -172,8 +187,8 @@ def graph(request):
                 yearsList.append(newDate)
 
         yearsListDone = yearsCountChart(yearsList)
-        print(yearsListDone)
-        print(vaxName.nome)
+        # print(yearsListDone)
+        # print(vaxName.nome)
         content = {
             'items': yearsListDone,
             'vax_nome': vaxName
@@ -250,12 +265,12 @@ class CardCreateView(LoginRequiredMixin, CreateView):
 
     def format_form(self, form):
         vacinaQuery = request.POST.get('vacina')
-        print(vacinaQuery)
+        # print(vacinaQuery)
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         valuesGet = self.request.GET.get('q').split('-')
-        print(valuesGet[2])
+        # print(valuesGet[2])
         qtd_lote = Storage.objects.get(id=valuesGet[2])
         
         qtd_lote.quantidade = qtd_lote.quantidade - 1
